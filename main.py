@@ -8,7 +8,7 @@ def print_hi(name):
 
 
 print(prn('Hello? helo? helo'))
-print(func(30))
+print(func(300))
 print(prn('Hello World'))
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
