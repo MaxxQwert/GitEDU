@@ -1,4 +1,5 @@
 from include import prn
+from function import func
 
 
 def print_hi(name):
@@ -7,6 +8,8 @@ def print_hi(name):
 
 
 print(prn('Hello? helo? helo'))
+print(func(30))
+print(prn('Hello World'))
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
