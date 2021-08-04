@@ -48,23 +48,54 @@ async def run_async():
 
 def run_main():
     logger.info("Starting main")
-    # asyncio.run(run_async())
+    # asyncio.run(run_async()
+
     coros = [
         foo(),
         bar()
     ]
     coro = asyncio.wait(coros,
-                        timeout=3,
+                        timeout=0.01,
                         # return_when=asyncio.ALL_COMPLETED,
                         return_when=asyncio.FIRST_COMPLETED,
                         )
-    asyncio.run(coro)
+    q, s = asyncio.run(coro)
+    # a = q[0]
+    # print()
+    for t in q:
+        print('Finished: ', t._state)
+
+    for t in s:
+        print('Canceld: ', t._state)
+
     logger.info("Finishing main")
 
 
 if __name__ == '__main__':
     # run_sync()
     #print(foo())
-    run_main()
+    # run_main()
     # coro = asyncio.wait([run_async()])
     # asyncio.run(coro)
+    logger.info("Starting main")
+    # asyncio.run(run_async()
+
+    coros = [
+        foo(),
+        bar()
+    ]
+    coro = asyncio.wait(coros,
+                        timeout=0.01,
+                        # return_when=asyncio.ALL_COMPLETED,
+                        return_when=asyncio.FIRST_COMPLETED,
+                        )
+    q, s = asyncio.run(coro)
+    # a = q[0]
+    # print()
+    for t in q:
+        print('Finished: ', t._state)
+
+    for t in s:
+        print('Canceld: ', t._state)
+
+    logger.info("Finishing main")

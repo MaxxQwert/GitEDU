@@ -13,7 +13,7 @@ async def main():
     task = set()
     task.add(asyncio.create_task(foo()))
     task.add(asyncio.create_task(bar()))
-    done, pending = await asyncio.wait(task)
+    done, pending = await asyncio.wait(task, return_when=asyncio.FIRST_COMPLETED)
 
     print(done)
     print(pending)
