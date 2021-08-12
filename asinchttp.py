@@ -1,6 +1,5 @@
 import asyncio
 from platform import system
-import sys
 from dataclasses import dataclass
 from time import sleep
 from timeit import default_timer
@@ -51,6 +50,7 @@ class Service:
 SERVICES = [
     Service("ipify", "https://api.ipify.org/?format=json", "ip"),
     Service("ip-api", "http://ip-api.com/json", "query"),
+
 ]
 
 
@@ -96,17 +96,17 @@ def get_my_ip():
     # print(pending)
     done, pending = asyncio.run(coro, debug=False)
     for t in pending:
-        logger.debug("Cancelling task {}", t)
+        logger.debug("Cancelling task {}my_ip")
         t.cancel()
 
-    my_ip = None
+    my_ip2 = None
     for t in done:
-        my_ip = t.result()
+        my_ip2 = t.result()
         break
     else:
         logger.warning("No results!")
 
-    logger.info("Got my ip! {}", my_ip)
+    logger.info("Got my ip! {}", my_ip2)
     sleep(10)
 
 
@@ -121,10 +121,10 @@ if __name__ == '__main__':
     # asyncio.run(get_my_ip())
     # v = sys.version_info[:2]
     # if v == (3, 9):
-    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    # asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
     coro = asyncio.wait(
         [fetch_ip(s) for s in SERVICES],
-        timeout=3,
+        timeout=30,
         return_when=asyncio.ALL_COMPLETED,
         # return_when=asyncio.FIRST_COMPLETED,
     )
